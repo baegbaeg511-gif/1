@@ -663,6 +663,7 @@ function applyProcess(rows){var g=groupRows(rows,0),html='';
 function applyPortfolio(rows){var g=groupRows(rows,0);if(!g.order.length)return;
   setBody('portfolio',tabset(g.order,g.order.map(function(k){var rs=g.map[k],desc=rs.map(function(r){return (r[2]||'').trim();}).filter(Boolean)[0]||'';
     var slides=[];rs.forEach(function(r){var l=(r[1]||'').trim();if(!l)return;var id=ytId(l);if(id)slides.push(ytCard(id,capHtml(r[3])));else slides.push('<img data-g="'+esc(l)+'" alt="" style="width:100%;display:block" loading="lazy">'+(r[3]?'<div class="cap">'+capHtml(r[3])+'</div>':''));});
+    if(!slides.length&&/썸네일/.test(k)){[1,2].forEach(function(n){slides.push('<img data-g="썸네일디자인'+n+'.jpg" alt="썸네일 디자인" style="width:100%;display:block" loading="lazy">');});}
     return (desc?'<div class="form-note-box">'+nl(desc)+'</div>':'')+(slides.length?sliderHtml(slides):'<div class="soon">준비중입니다</div>');})));}
 
 function applyRules(rows){var list=sec('rules').querySelector('.notice-list');if(!list)return;
